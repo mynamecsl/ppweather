@@ -2,7 +2,7 @@ package com.ppweather.app.db;
 
 /**
  * PPWeatherDB是一个单例类，将它的构造方法私有化，并提供一个getInstance()方法来获取PPWeatherDB实例，这样可以保证全局范围内只有一个PPWeatherDB的实例
- * 提供六组方法
+ * 提供六组方法saveProvince、loadProvinces、saveCity、loadCities、saveCounty、loadCounties用于存储读取数据
  */
 
 import java.util.ArrayList;
