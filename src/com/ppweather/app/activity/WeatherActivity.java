@@ -1,6 +1,7 @@
 package com.ppweather.app.activity;
 
 import com.ppweather.app.R;
+import com.ppweather.app.service.AutoUpdateService;
 import com.ppweather.app.util.HttpCallbackListener;
 import com.ppweather.app.util.HttpUtil;
 import com.ppweather.app.util.Utility;
@@ -58,7 +59,6 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.weather_layout);
@@ -167,6 +167,9 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+		//在showWeather中启动AutoUpdateService。这样一旦选中某城市并成功更新天气，AutoUpdateService就会在后台运行，并8小时更新一次天气
+		Intent intent = new Intent(this,AutoUpdateService.class);
+		startService(intent);
 	}
 
 	@Override
